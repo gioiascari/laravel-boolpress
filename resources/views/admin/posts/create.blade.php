@@ -18,14 +18,28 @@
                     {{-- title post --}}
                     <div class="form-group">
                         <label for="title">Title:</label>
-                        <input type="text" name="title" class="form-control" placeholder="Post's title">
+                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror " placeholder="Post's title"
+
+                        >@error('title')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+
+                        @enderror
                     </div>
                     {{--/ title post --}}
 
                       {{-- content post --}}
                       <div class="form-group">
                         <label for="content">Content:</label>
-                        <textarea type="text" name="content" class="form-control" placeholder="Post's content"></textarea>
+                        <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror" placeholder="Post's content">
+
+                        </textarea>
+                        @error('content')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                 </div>
+                        @enderror
                     </div>
                     {{--/ content post --}}
 

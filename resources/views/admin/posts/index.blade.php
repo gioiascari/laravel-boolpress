@@ -30,33 +30,32 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
                                 <td>
-                                    <a href="{{ route('admin.posts.show', $post->id) }}"
-                                    class="btn btn-info btn-sm"></a>
+                                    <a href="{{ route('admin.posts.show', $post->id) }}">
+                                        <form action="{{route('admin.posts.destroy' ,  $post->id)}}" method="POST">
+                                            @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-danger" onclick="return confirm('Are you sure you wanna delete the Post?');">
+                                                    Delete
+                                                </button>
+                                        </form>
+                                    </a>
                                 </td>
 
                             </tr>
+
 
                         @endforeach
                         {{--/ Table content  --}}
 
                     </tbody>
-                    <tfoot>
+                    {{-- <tfoot>
                         <tr>
                             <th>
-                                <form action="{{route('admin.posts.destroy' , $post->id)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <div class="delete">
-                                        <button class="btn btn-danger" onclick="return confirm('Are you sure you wanna delete the Post?');">
-                                            Delete
 
-                                        </button>
-
-                                    </div>
-                                </form>
                             </th>
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                 </table>
             </div>
         </div>

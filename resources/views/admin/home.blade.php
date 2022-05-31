@@ -14,7 +14,7 @@
                 {{ session('status') }}
               </div>
             @endif
-            Benvenuto ,
+            Benvenuto {{Auth::user()->name}} <!--metodo per richiamare il nome corretto dell'utente-->
             {{ __('hai effettuato il login!') }}
           </div>
         </div>
