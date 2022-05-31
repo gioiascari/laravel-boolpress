@@ -29,9 +29,9 @@
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
-                                <td>
+                                <td class="text-center">
                                     <a href="{{ route('admin.posts.show', $post->id) }}">
-                                        <form action="{{route('admin.posts.destroy' ,  $post->id)}}" method="POST">
+                                        <form action="{{route('admin.posts.destroy' ,  $post->id)}}" method="POST" class="d-inline-block ">
                                             @csrf
                                                 @method('DELETE')
 
@@ -40,6 +40,9 @@
                                                 </button>
                                         </form>
                                     </a>
+                                    <a href="{{ route('admin.posts.edit' , $post->id) }}" class="btn btn-outline-info" > Edit
+
+                                     </a>
                                 </td>
 
                             </tr>
@@ -49,13 +52,7 @@
                         {{--/ Table content  --}}
 
                     </tbody>
-                    {{-- <tfoot>
-                        <tr>
-                            <th>
 
-                            </th>
-                        </tr>
-                    </tfoot> --}}
                 </table>
             </div>
         </div>

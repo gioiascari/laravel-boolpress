@@ -38,10 +38,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
             'title' => 'required|max:255',
-            'content' => 'required'
-        ]);
+            'content' => 'required|min:8'
+            ],
+            // L'array sottostante equivale ad un messaggio di errore personalizzato,
+            // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'
+            [
+                'title.required' => 'LoL, you forgot the title.',
+                'content.min' => "C'mon man, you're almost there!",
+                'content.required'=> 'LoL, you also forgot the content.'
+            ]
+        );
             $postData = $request->all();
             $newPost = new Post();
             $newPost->fill($postData);
@@ -91,16 +100,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required'
-        ]);
+            'content' => 'required|min:8'
+        ],
+        [
+            'title.required' => 'LoL, you forgot the title.',
+            'content.min' => "C'mon man, you're almost there!",
+            'content.required'=> 'LoL, you also forgot the content.'
+        ]
+        );
             $postData = $request->all();
-            $post=Post::find($id);
-            $newPost->fill($postData);
-            $slug = Str::slug($newPost->title);
+            $post->fill($postData);
+            $slug = Str::slug($post->title);
             $alternativeSlug = $slug;
             $postFound = Post::where('slug', $alternativeSlug)->first();
             $counter = 1;
@@ -109,9 +123,9 @@ class PostController extends Controller
                 $counter++;
                 $postFound = Post::where('slug', $alternativeSlug)->first();
             }
-            $newPost->slug = $alternativeSlug;
-            $post->update($newPost);
-            return redirect()->route('admin.posts.index', compact('post'));
+            $post->slug = $alternativeSlug;
+            $post->update();
+            return redirect()->route('admin.posts.index');
     }
 
     /**
