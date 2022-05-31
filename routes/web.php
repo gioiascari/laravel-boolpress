@@ -21,13 +21,13 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('auth')
-    ->namespace('Admin')
-    ->name('admin.')
-    ->prefix('admin')
-    ->group(function (){
-        Route::get('/', 'HomeController@index')->name('index');
-        Route::resource('/posts', 'PostController');
+Route::middleware("auth")
+    ->namespace("Admin")
+    ->name("admin.")
+    ->prefix("admin")
+    ->group(function () {
+        Route::get("/", "HomeController@index")->name("index");
+        Route::resource("/posts", "PostController");
     });
 //Si utilizza per ultima perché prima deve controllare le rotte precedenti e per ultima questa sotto
 //'any?' significa che prende qualsiasi percorso
