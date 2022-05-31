@@ -33,11 +33,30 @@
                                     <a href="{{ route('admin.posts.show', $post->id) }}"
                                     class="btn btn-info btn-sm"></a>
                                 </td>
+
                             </tr>
+
                         @endforeach
                         {{--/ Table content  --}}
 
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                <form action="{{route('admin.posts.destroy' , $post->id)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="delete">
+                                        <button class="btn btn-danger" onclick="return confirm('Are you sure you wanna delete the Post?');">
+                                            Delete
+
+                                        </button>
+
+                                    </div>
+                                </form>
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
