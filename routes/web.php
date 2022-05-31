@@ -26,8 +26,8 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function (){
-        Route::get('/', 'HomeController@index')
-        ->name('home');
+        Route::get('/', 'HomeController@index')->name('index');
+        Route::resource('/posts', 'PostController');
     });
 //Si utilizza per ultima perché prima deve controllare le rotte precedenti e per ultima questa sotto
 //'any?' significa che prende qualsiasi percorso
