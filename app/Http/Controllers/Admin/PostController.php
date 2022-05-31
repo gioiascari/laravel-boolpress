@@ -98,7 +98,6 @@ class PostController extends Controller
         ]);
             $postData = $request->all();
             $post=Post::find($id);
-            $newPost = new Post();
             $newPost->fill($postData);
             $slug = Str::slug($newPost->title);
             $alternativeSlug = $slug;
