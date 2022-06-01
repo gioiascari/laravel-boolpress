@@ -29,6 +29,21 @@
                     </div>
                     {{--/ title post --}}
 
+                    {{-- category post  --}}
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category_id">
+                            <option value="">Choose Category</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">
+                                {{$category->name}}
+                            </option>
+
+                            @endforeach
+                        </select>
+                    </div>
+                    {{-- /category post  --}}
+
                       {{-- content post --}}
                       <div class="form-group">
                         <label for="content">Content:</label>

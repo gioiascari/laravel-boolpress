@@ -13,8 +13,7 @@ class AddCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Bands', 'Duration', 'Title']; //In questo array inserisco le categorie che utilizzo
-                          //Nelle categorie vado a mettere valori univoci
+        $categories = ['Bands', 'Duration', 'Title'];
         foreach($categories as $category){
             $newCategory_obj = new Category;
             $newCategory_obj->name = $category;
