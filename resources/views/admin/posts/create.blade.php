@@ -32,7 +32,7 @@
                     {{-- category post  --}}
                     <div class="form-group">
                         <label>Category</label>
-                        <select name="category_id">
+                        <select name="category_id" class=" @error('content') is-invalid @enderror">
                             <option value="">Choose Category</option>
                             @foreach ($categories as $category)
                             {{-- Category id è selezionato? se si  me lo fa vedere se è no rimane vuoto --}}
@@ -42,7 +42,7 @@
 
                             @endforeach
                         </select>
-                        @error('category')
+                        @error('category_id')
                         <div class="invalid-feedback">
                             {{$message}}
                          </div>

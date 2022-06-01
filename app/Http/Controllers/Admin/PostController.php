@@ -44,14 +44,15 @@ class PostController extends Controller
             [
             'title' => 'required|max:255',
             'content' => 'required|min:8',
-            'category_id'=>'nullable|exists:category,id'
+            'category_id'=>'required|exists:categories,id' //il valore di category o è nullo, o esiste nella tabella
             ],
             // L'array sottostante equivale ad un messaggio di errore personalizzato,
             // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'
             [
                 'title.required' => 'LoL, you forgot the title.',
                 'content.min' => "C'mon man, you're almost there!",
-                'content.required'=> 'LoL, you also forgot the content.'
+                'content.required'=> 'LoL, you also forgot the content.',
+                'category_id.required'=>"Try again, this category doesn't exist."
             ]
         );
             $postData = $request->all();
