@@ -43,7 +43,8 @@ class PostController extends Controller
         $request->validate(
             [
             'title' => 'required|max:255',
-            'content' => 'required|min:8'
+            'content' => 'required|min:8',
+            'category_id'=>'nullable|exists:category,id'
             ],
             // L'array sottostante equivale ad un messaggio di errore personalizzato,
             // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'

@@ -35,12 +35,18 @@
                         <select name="category_id">
                             <option value="">Choose Category</option>
                             @foreach ($categories as $category)
-                            <option value="{{$category->id}}">
+                            {{-- Category id è selezionato? se si  me lo fa vedere se è no rimane vuoto --}}
+                            <option value="{{$category->id}}" {{$category->id == old('category_id') ? 'selected' : ''}}>
                                 {{$category->name}}
                             </option>
 
                             @endforeach
                         </select>
+                        @error('category')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                         </div>
+                        @enderror
                     </div>
                     {{-- /category post  --}}
 
