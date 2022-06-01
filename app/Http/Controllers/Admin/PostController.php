@@ -94,7 +94,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post=Post::find($id);
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -106,15 +107,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required|min:8'
-        ],
-        [
-            'title.required' => 'LoL, you forgot the title.',
-            'content.min' => "C'mon man, you're almost there!",
-            'content.required'=> 'LoL, you also forgot the content.'
-        ]
+        $request->validate(
+            [
+                'title' => 'required|max:255',
+                'content' => 'required|min:8',
+                'category_id'=>'required|exists:categories,id'
+                ],
+                // L'array sottostante equivale ad un messaggio di errore personalizzato,
+                // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'
+                [
+                    'title.required' => 'LoL, you forgot the title.',
+                    'content.min' => "C'mon man, you're almost there!",
+                    'content.required'=> 'LoL, you also forgot the content.',
+                    'category_id.exists'=>"Try again, this category doesn't exist."
+                ]
         );
             $postData = $request->all();
             $post->fill($postData);

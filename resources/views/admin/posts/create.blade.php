@@ -28,6 +28,13 @@
                         @enderror
                     </div>
                     {{--/ title post --}}
+                    {{-- Slug  --}}
+                    {{-- Lo devo mettere o non lo devo mettere? Nel dubbio lo commento --}}
+                    {{-- <div class="form-group">
+                        <label for="slug">Slug:</label>
+                        <input type="text" name="slug" class="form-control @error('title') is-invalid @enderror " placeholder="Slug">
+                    </div> --}}
+                    {{--/ Slug  --}}
 
                     {{-- category post  --}}
                     <div class="form-group">
@@ -35,8 +42,8 @@
                         <select name="category_id" class=" @error('content') is-invalid @enderror">
                             <option value="">Choose Category</option>
                             @foreach ($categories as $category)
-                            {{-- Category id è selezionato? se si  me lo fa vedere se è no rimane vuoto --}}
-                            <option value="{{$category->id}}" {{$category->id == old('category_id') ? 'selected' : ''}}>
+
+                            <option value="{{$category->id}}" {{$category->id == old('category_id') ? 'selected' : ''}}> {{-- Se non inserisco il secondo valore su old, mi rimane quello di default--}}
                                 {{$category->name}}
                             </option>
 
@@ -54,7 +61,7 @@
                       <div class="form-group">
                         <label for="content">Content:</label>
                         <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror" placeholder="Post's content">
-
+                            {{old('content')}}
                         </textarea>
                         @error('content')
                                 <div class="invalid-feedback">
