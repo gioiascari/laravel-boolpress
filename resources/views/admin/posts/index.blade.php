@@ -28,19 +28,31 @@
                             <th>Title</th>
                             <th>Category</th>
                             <th>Slug</th>
+                            <th>Tags</th>
+                            {{-- <th>Tags</th> Quando vado ad inserire il foreach di tags mi da un mega errore, pertanto preferirei non mostrarlo, bella! --}}
                             <th class="text-center">Actions</th>
                         </tr>
                         {{--/ Table title  --}}
                     </thead>
                     <tbody>
                         {{-- Table content  --}}
+
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->category->name }}</td>
-                                {{-- <td>{{ $post->tag->name }}</td> --}}
+
                                 <td>{{ $post->slug }}</td>
+
+                                <td>
+                                    @foreach ($post->tag as $tag)
+                                    {{$tag->name}}
+                                    @endforeach
+                                </td>
+
+
+
 
                                 <td class="text-center">
                                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-outline-info">View

@@ -13,20 +13,20 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('post_tag')){
+
             Schema::create('post_tag', function (Blueprint $table) {
                 //Post
-                if(!Schema::hasColumn('post_tag','post_id')) {
+
                     $table->unsignedBigInteger('post_id');
                     $table->foreign('post_id')->references('id')->on('posts');
-                }
 
-                if(!Schema::hasColumn('post_tag', 'tag_id')) {
+
+
                     $table->unsignedBigInteger('tag_id');
                     $table->foreign('tag_id')->references('id')->on('tags');
-                }
+
             });
-        }
+
     }
 
     /**

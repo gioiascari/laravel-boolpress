@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
-use App\Tags;
+use App\Tag;
 class PostController extends Controller
 {
     /**
@@ -18,8 +18,8 @@ class PostController extends Controller
     public function index()
     {
         $posts= Post::all();
-        $tags= Tags::all();
-        return view('admin.posts.index', compact('posts', 'tags'));
+
+        return view('admin.posts.index', compact('posts'));
 
     }
 
@@ -31,7 +31,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $tags = Tags::all();
+        $tags = Tag::all();
         return view('admin.posts.create' , compact('categories', 'tags'));
     }
 
@@ -76,8 +76,9 @@ class PostController extends Controller
             $newPost->save();
             //Sync
             if(array_key_exists('tags', $postData)){
-                $newPost->tags()->sync($postData->tags);
+                $newPost->tag()->sync($postData['tags']);
             }
+            $newPost->save();
             return redirect()->route('admin.posts.index');
 
     }
@@ -91,8 +92,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post=Post::find($id);
-        $tags = $post->tags;
         $category = Category::find($post->category_id);
+        $tags = Tag::all();
         return view('admin.posts.show', compact('post','category', 'tags'));
     }
 
@@ -106,7 +107,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $categories = Category::all();
-        $tags = Tags::all();
+        $tags = Tag::all();
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
@@ -123,7 +124,8 @@ class PostController extends Controller
                 [
                 'title' => 'required|max:255',
                 'content' => 'required|min:8',
-                'category_id'=>'required|exists:categories,id'
+                'category_id'=>'required|exists:categories,id',
+                'tags[]'=>'exists:tags,id'
                 ],
                 [
                     'title.required' => 'LoL, you forgot the title.',
@@ -134,6 +136,8 @@ class PostController extends Controller
         );
             $postData = $request->all();
             $post->fill($postData);
+
+            //Slug
             $slug = Str::slug($post->title);
             $alternativeSlug = $slug;
             $postFound = Post::where('slug', $alternativeSlug)->first();
@@ -146,7 +150,7 @@ class PostController extends Controller
             $post->slug = $alternativeSlug;
             //Sync
             if(array_key_exists('tags', $postData)){
-                $post->tags()->sync($postData->tags);
+                $post->tag()->sync($postData['tags']);
             }
             $post->update();
             return redirect()->route('admin.posts.index');
@@ -162,7 +166,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $post->delete();
-        $post->tags()->sync([]);
+        // $post->tags()->sync([]);
         return redirect()->route('admin.posts.index', compact('post')) ;
     }
 }

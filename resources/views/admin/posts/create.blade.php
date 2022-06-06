@@ -72,14 +72,22 @@
                     {{--/ content post --}}
 
                     {{-- Tags input  --}}
-                    @foreach ($tags as $tag)
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                          {{$tag->name}}
-                        </label>
-                      </div>
-                      @endforeach
+                    <div class="form-group">
+                        <h2 for="content">Tags:</h2>
+                        @foreach ($tags as $tag)
+
+                            <input class="form-check-input" type="checkbox" value="{{ $tag->id }}"
+                                name="tags[]" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} />
+                            <div class="form-check-label">{{ $tag->name }}</div>
+                        @endforeach
+                        @error('tags')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    {{-- @dd($tags) --}}
+
                     {{-- /Tags input  --}}
 
 
