@@ -20,7 +20,7 @@ class CreatePostTagTable extends Migration
                     $table->unsignedBigInteger('post_id');
                     $table->foreign('post_id')->references('id')->on('posts');
                 }
-                //Tag
+
                 if(!Schema::hasColumn('post_tag', 'tag_id')) {
                     $table->unsignedBigInteger('tag_id');
                     $table->foreign('tag_id')->references('id')->on('tags');

@@ -16,8 +16,8 @@ class TagsTableSeeder extends Seeder
         $tags = ['Hip-Hop', 'Rap', 'Pop', 'R&B'];
         foreach($tags as $tag){
             $newTag = new Tags;
-            $newTag->name = $tags;
-            $newTag->slug = Str::slug($tags);
+            $newTag->name = $tag;
+            $newTag->slug = Str::slug($tag);
             $newTag->save();
 
         }
