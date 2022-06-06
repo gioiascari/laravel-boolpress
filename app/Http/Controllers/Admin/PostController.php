@@ -30,8 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags= Tags::all();
         $categories = Category::all();
+        $tags = Tags::all();
         return view('admin.posts.create' , compact('categories', 'tags'));
     }
 
@@ -47,7 +47,8 @@ class PostController extends Controller
             [
             'title' => 'required|max:255',
             'content' => 'required|min:8',
-            'category_id'=>'required|exists:categories,id' //il valore di category o è nullo, o esiste nella tabella
+            'category_id'=>'required|exists:categories,id',
+            'tags[]'=> 'exists:tags,id'
             ],
             // L'array sottostante equivale ad un messaggio di errore personalizzato,
             // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'
@@ -55,7 +56,8 @@ class PostController extends Controller
                 'title.required' => 'LoL, you forgot the title.',
                 'content.min' => "C'mon man, you're almost there!",
                 'content.required'=> 'LoL, you also forgot the content.',
-                'category_id.required'=>"Try again, this category doesn't exist."
+                'category_id.required'=>"Try again, this category doesn't exist.",
+                'tags[]'=> "This tag doesn't exist"
             ]
         );
             $postData = $request->all();
@@ -72,6 +74,10 @@ class PostController extends Controller
             }
             $newPost->slug = $alternativeSlug;
             $newPost->save();
+            //Sync
+            if(array_key_exists('tags', $postData)){
+                $newPost->tags()->sync($postData->tags);
+            }
             return redirect()->route('admin.posts.index');
 
     }
@@ -85,9 +91,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post=Post::find($id);
-        // $tag=Tags::find(1);
+        $tags = $post->tags;
         $category = Category::find($post->category_id);
-        return view('admin.posts.show', compact('post','category'));
+        return view('admin.posts.show', compact('post','category', 'tags'));
     }
 
     /**
@@ -100,7 +106,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $categories = Category::all();
-        $tags= Tags::all();
+        $tags = Tags::all();
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
@@ -114,13 +120,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate(
-            [
+                [
                 'title' => 'required|max:255',
                 'content' => 'required|min:8',
                 'category_id'=>'required|exists:categories,id'
                 ],
-                // L'array sottostante equivale ad un messaggio di errore personalizzato,
-                // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'
                 [
                     'title.required' => 'LoL, you forgot the title.',
                     'content.min' => "C'mon man, you're almost there!",
@@ -140,6 +144,10 @@ class PostController extends Controller
                 $postFound = Post::where('slug', $alternativeSlug)->first();
             }
             $post->slug = $alternativeSlug;
+            //Sync
+            if(array_key_exists('tags', $postData)){
+                $post->tags()->sync($postData->tags);
+            }
             $post->update();
             return redirect()->route('admin.posts.index');
     }
@@ -154,6 +162,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $post->delete();
+        $post->tags()->sync([]);
         return redirect()->route('admin.posts.index', compact('post')) ;
     }
 }
