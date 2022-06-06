@@ -100,7 +100,8 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags= Tags::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**

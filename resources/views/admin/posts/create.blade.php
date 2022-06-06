@@ -70,9 +70,9 @@
                         @enderror
                     </div>
                     {{--/ content post --}}
+
+                    {{-- Tags input  --}}
                     @foreach ($tags as $tag)
-
-
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault">
@@ -80,6 +80,7 @@
                         </label>
                       </div>
                       @endforeach
+                    {{-- /Tags input  --}}
 
 
                     <div class="form-group">
