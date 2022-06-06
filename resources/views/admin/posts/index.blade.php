@@ -39,6 +39,7 @@
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->category->name }}</td>
+                                {{-- <td>{{ $post->tag->name }}</td> --}}
                                 <td>{{ $post->slug }}</td>
 
                                 <td class="text-center">

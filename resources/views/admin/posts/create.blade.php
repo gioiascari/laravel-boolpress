@@ -71,8 +71,16 @@
                     </div>
                     {{--/ content post --}}
                     @foreach ($tags as $tag)
-                                {{ $tag->name }}
-                              @endforeach
+
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          {{$tag->name}}
+                        </label>
+                      </div>
+                      @endforeach
+
 
                     <div class="form-group">
                         <input type="submit" class="btn btn-info white" value="Create Post">
