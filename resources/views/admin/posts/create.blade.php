@@ -70,6 +70,9 @@
                         @enderror
                     </div>
                     {{--/ content post --}}
+                    @foreach ($tags as $tag)
+                                {{ $tag->name }}
+                              @endforeach
 
                     <div class="form-group">
                         <input type="submit" class="btn btn-info white" value="Create Post">

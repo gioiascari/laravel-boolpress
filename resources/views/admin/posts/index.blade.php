@@ -6,11 +6,20 @@
             <div class="col-12 ">
                 <div class="allPosts d-flex justify-content-between align-items-center">
                     <h1>All Posts</h1>
+                    {{-- @foreach ($tags as $tag)
+                    <p>
+                        {{$tag->tag_id}}
+                    </p>
+
+                    @endforeach --}}
+                    {{-- <p>{{$tags}}</p> --}}
                     <a href="{{route('admin.posts.create')}}" class="btn btn-info"> Add new Post</a>
 
                 </div>
                 {{-- Creo una tabella per mettere gli attributi al di sotto dei titoli adatti, so che non bisognerebbe farla ma non mi viene in mente nient'altro  --}}
+                <div>
 
+                </div>
                 <table class="table">
                     <thead>
                         {{-- Table title  --}}
@@ -31,6 +40,7 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->category->name }}</td>
                                 <td>{{ $post->slug }}</td>
+
                                 <td class="text-center">
                                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-outline-info">View
 
@@ -52,6 +62,7 @@
 
 
                         @endforeach
+
                         {{--/ Table content  --}}
 
                     </tbody>
