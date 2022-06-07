@@ -93,7 +93,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $category = Category::find($post->category_id);
-        $tag = Tag::find($post->tag_id);
+        $tag = $post->tag;
         return view('admin.posts.show', compact('post','category', 'tag'));
     }
 
