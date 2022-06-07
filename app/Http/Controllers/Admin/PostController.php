@@ -73,7 +73,7 @@ class PostController extends Controller
                 $postFound = Post::where('slug', $alternativeSlug)->first();
             }
             $newPost->slug = $alternativeSlug;
-            // $newPost->save();
+            $newPost->save();
             //Sync
             if(array_key_exists('tags', $postData)){
                 $newPost->tag()->sync($postData['tags']);

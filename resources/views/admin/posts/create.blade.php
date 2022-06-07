@@ -27,7 +27,16 @@
 
                         @enderror
                     </div>
+                    {{--/ title post --}}
+                    {{-- Slug  --}}
+                    {{-- Lo devo mettere o non lo devo mettere? Nel dubbio lo commento --}}
+                    {{-- <div class="form-group">
+                        <label for="slug">Slug:</label>
+                        <input type="text" name="slug" class="form-control @error('title') is-invalid @enderror " placeholder="Slug">
+                    </div> --}}
+                    {{--/ Slug  --}}
 
+                    {{-- category post  --}}
                     <div class="form-group">
                         <label>Category</label>
                         <select name="category_id" class=" @error('content') is-invalid @enderror">

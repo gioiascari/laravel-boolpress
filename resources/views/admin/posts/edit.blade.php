@@ -69,14 +69,23 @@
                     </div>
                     {{--/ content post --}}
                     {{-- Tags input  --}}
-                         @foreach ($tags as $tag)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    {{$tag->name}}
-                                    </label>
-                                </div>
-                            @endforeach
+                    <div class="form-group">
+                        <p>Tags:</p>
+                        @foreach ($tags as $tag)
+                            <div class="ml-3">
+                                <input type="checkbox" value="{{ $tag->id }}" name="tags[]"
+                                    class="form-check-input @error('tags') is-invalid @enderror "
+                                    {{ $post->tag->contains($tag) ? 'checked' : '' }}>
+                                <div class="form-check-label">{{ $tag->name }}</div>
+                            </div>
+                        @endforeach
+                        @error('tags[]')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     {{-- /Tags input  --}}
                     <div class="form-group">
                         <input type="submit" class="btn btn-info white" value="Edit Post">
