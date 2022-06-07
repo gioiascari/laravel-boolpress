@@ -51,14 +51,8 @@
                     {{-- Image post  --}}
                     <div class="form-group">
                         <label for="image">Cover image:</label>
-                        <input type="file" name="image" class="form-control @error('content') is-invalid @enderror"/>
-                            {{-- {{old('image')}} --}}
+                        <input type="file" name="image" />
 
-                        {{-- @error('content')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                 </div>
-                        @enderror --}}
                     </div>
                     {{-- /Image post  --}}
 

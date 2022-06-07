@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -48,21 +49,30 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|min:8',
             'category_id'=>'required|exists:categories,id',
-            'tags[]'=> 'exists:tags,id'
+            'tags[]'=> 'exists:tags,id',
+            'image'=>'nullable|image'
             ],
-            // L'array sottostante equivale ad un messaggio di errore personalizzato,
-            // Lo si può utilizzare per cambiare il soggetto dell'errore es 'name.required' => 'The name field is required.'
             [
                 'title.required' => 'LoL, you forgot the title.',
                 'content.min' => "C'mon man, you're almost there!",
                 'content.required'=> 'LoL, you also forgot the content.',
                 'category_id.required'=>"Try again, this category doesn't exist.",
-                'tags[]'=> "This tag doesn't exist"
+                'tags[]'=> "This tag doesn't exist",
+                'image'=>'This must be an image'
             ]
         );
             $postData = $request->all();
+            //Image
+            if(array_key_exists('image', $postData)){
+                $img_path = Storage::put('uploads', $postData['image']);
+                $postData['cover'] = $img_path;
+            }
+
             $newPost = new Post();
+            // $newPost->cover = $img_path;
             $newPost->fill($postData);
+
+            //Slug
             $slug = Str::slug($newPost->title);
             $alternativeSlug = $slug;
             $postFound = Post::where('slug', $alternativeSlug)->first();
@@ -78,6 +88,7 @@ class PostController extends Controller
             if(array_key_exists('tags', $postData)){
                 $newPost->tag()->sync($postData['tags']);
             }
+
             $newPost->save();
             return redirect()->route('admin.posts.index');
 
