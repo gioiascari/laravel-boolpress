@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -13,5 +14,8 @@ class Post extends Model
     public function tag()
     {
         return $this->belongsToMany('App\Tag');
+    }
+    public function storage(){
+        $cover_path = Storage::put('uploads', $data['image']);
     }
 }
