@@ -146,6 +146,16 @@ class PostController extends Controller
                 ]
         );
             $postData = $request->all();
+            //Image
+            if(array_key_exists('image', $postData)){
+                if($post->cover){
+                    Storage::delete($post->cover);
+                }
+                //Una volta che è stata cancellata l'immagine vecchia, carica quella nuova
+                $img_path = Storage::put('uploads', $postData['image']);
+                $postData['cover'] = $img_path;
+            }
+
             $post->fill($postData);
 
             //Slug
@@ -177,6 +187,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $post->tag()->sync([]);
+        // Storage::delete($post->cover);
         $post->delete();
 
         return redirect()->route('admin.posts.index', compact('post')) ;

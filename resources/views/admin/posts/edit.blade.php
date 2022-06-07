@@ -34,7 +34,15 @@
                         <input type="text" name="title" class="form-control @error('title') is-invalid @enderror " placeholder="Post's title" value="{{old('slug',$post->slug)}}">
                     </div>
                     {{--/ Slug  --}}
+                    <div class="form-group">
+                        <div>
+                        <img src="{{ asset('storage/' . $post->cover)}}" alt="">
 
+                        </div>
+                        <label for="image">Cover image:</label>
+                        <input type="file" name="image" />
+
+                    </div>
                     {{-- category post  --}}
                     <div class="form-group">
                         <label>Category</label>
