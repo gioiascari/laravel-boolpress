@@ -17,7 +17,7 @@
                     <dd>{{$category->name}}</dd>
                     <dt>Content:</dt>
                     <dd>{{$post->content}}</dd>
-                    <dt>Tags di merda</dt>
+                    <dt>Tags</dt>
                     <dd>
                         @foreach ($post->tags as $tag)
                         {{$tag->name}}

@@ -6,13 +6,6 @@
             <div class="col-12 ">
                 <div class="allPosts d-flex justify-content-between align-items-center">
                     <h1>All Posts</h1>
-                    {{-- @foreach ($tags as $tag)
-                    <p>
-                        {{$tag->tag_id}}
-                    </p>
-
-                    @endforeach --}}
-                    {{-- <p>{{$tags}}</p> --}}
                     <a href="{{route('admin.posts.create')}}" class="btn btn-info"> Add new Post</a>
 
                 </div>
@@ -29,7 +22,7 @@
                             <th>Category</th>
                             <th>Slug</th>
                             <th>Tags</th>
-                            {{-- <th>Tags</th> Quando vado ad inserire il foreach di tags mi da un mega errore, pertanto preferirei non mostrarlo, bella! --}}
+                            {{-- <th>Tags</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         {{--/ Table title  --}}
