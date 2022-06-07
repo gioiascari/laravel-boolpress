@@ -15,7 +15,5 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
-    public function storage(){
-        $cover_path = Storage::put('uploads', $data['image']);
-    }
+
 }

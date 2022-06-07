@@ -10,7 +10,7 @@
 
             {{--/ Title card  --}}
             <div class="card-body">
-                <form action="{{route('admin.posts.store')}}" method="POST">
+                <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
                     {{-- Token  --}}
                     @csrf
                     {{-- / Token  --}}
@@ -48,6 +48,19 @@
                         @enderror
                     </div>
                     {{-- /category post  --}}
+                    {{-- Image post  --}}
+                    <div class="form-group">
+                        <label for="image">Cover image:</label>
+                        <input type="file" name="image" class="form-control @error('content') is-invalid @enderror"/>
+                            {{-- {{old('image')}} --}}
+
+                        {{-- @error('content')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                 </div>
+                        @enderror --}}
+                    </div>
+                    {{-- /Image post  --}}
 
                       {{-- content post --}}
                       <div class="form-group">
