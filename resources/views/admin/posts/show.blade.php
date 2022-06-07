@@ -19,7 +19,7 @@
                     <dd>{{$post->content}}</dd>
                     <dt>Tags</dt>
                     <dd>
-                        @foreach ($post->tags as $tag)
+                        @foreach ($post->tag as $tag)
                         {{$tag->name}}
 
                         @endforeach

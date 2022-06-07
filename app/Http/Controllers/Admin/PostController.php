@@ -73,7 +73,7 @@ class PostController extends Controller
                 $postFound = Post::where('slug', $alternativeSlug)->first();
             }
             $newPost->slug = $alternativeSlug;
-            $newPost->save();
+            // $newPost->save();
             //Sync
             if(array_key_exists('tags', $postData)){
                 $newPost->tag()->sync($postData['tags']);
@@ -93,8 +93,8 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $category = Category::find($post->category_id);
-        $tags = Tag::all();
-        return view('admin.posts.show', compact('post','category', 'tags'));
+        $tag = Tag::find($post->tag_id);
+        return view('admin.posts.show', compact('post','category', 'tag'));
     }
 
     /**
@@ -165,8 +165,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post=Post::find($id);
+        $post->tag()->sync([]);
         $post->delete();
-        // $post->tags()->sync([]);
+
         return redirect()->route('admin.posts.index', compact('post')) ;
     }
 }

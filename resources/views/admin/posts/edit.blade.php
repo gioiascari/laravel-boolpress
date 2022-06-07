@@ -71,7 +71,7 @@
                     {{-- Tags input  --}}
                          @foreach ($tags as $tag)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">
                                     {{$tag->name}}
                                     </label>
