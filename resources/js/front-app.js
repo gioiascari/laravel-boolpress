@@ -7,7 +7,15 @@ console.log("Ok Js:)");
 require("./bootstrap");
 
 window.axios = require("axios");
-window.Vue = require("vue");
+// window.Vue = require("vue");
+window.axios
+    .get("/api/posts")
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((e) => {
+        console.log(e);
+    });
 
 /**
  * The following block of code may be used to automatically register your
