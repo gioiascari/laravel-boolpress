@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
 
-
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts= Post::paginate(1);
-        $posts = Post::all();
-        $result = ['result'=>$posts , 'success' => true];
-        return response()->json($posts);
-
+        //
     }
 
     /**
