@@ -9,7 +9,7 @@
                 <div class="card-header">Edit a Post</div>
 
                 <div class="card-body">
-                <form action="{{route('admin.posts.update', $post)}}" method="POST">
+                <form action="{{route('admin.posts.update', $post)}}" method="POST" enctype="multipart/form-data">
                     {{-- Token  --}}
                     @csrf
                     {{-- / Token  --}}
@@ -36,7 +36,7 @@
                     {{--/ Slug  --}}
                     <div class="form-group">
                         <div>
-                        <img src="{{ asset('storage/' . $post->cover)}}" alt="">
+                        <img src="{{ asset('storage/' . $post->cover)}}">
 
                         </div>
                         <label for="image">Cover image:</label>

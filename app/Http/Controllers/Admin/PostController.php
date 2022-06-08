@@ -50,7 +50,7 @@ class PostController extends Controller
             'content' => 'required|min:8',
             'category_id'=>'required|exists:categories,id',
             'tags[]'=> 'exists:tags,id',
-            'image'=>'nullable|image'
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048'
             ],
             [
                 'title.required' => 'LoL, you forgot the title.',
@@ -58,7 +58,7 @@ class PostController extends Controller
                 'content.required'=> 'LoL, you also forgot the content.',
                 'category_id.required'=>"Try again, this category doesn't exist.",
                 'tags[]'=> "This tag doesn't exist",
-                'image'=>'This must be an image'
+                'file'=>'This must be an image'
             ]
         );
             $postData = $request->all();
@@ -187,7 +187,7 @@ class PostController extends Controller
     {
         $post=Post::find($id);
         $post->tag()->sync([]);
-        // Storage::delete($post->cover);
+        Storage::delete($post->cover);
         $post->delete();
 
         return redirect()->route('admin.posts.index', compact('post')) ;

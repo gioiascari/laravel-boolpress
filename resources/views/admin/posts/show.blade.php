@@ -13,7 +13,7 @@
                     <dd>{{$post->title}}</dd>
                     <dt>Cover:</dt>
                     <dd>
-                        <img src="{{ asset('storage/' . $post->cover)}}" alt="">
+                        <img src="{{ asset('storage/' . $post->cover)}}" alt="" />
                     </dd>
                     <dt>Slug:</dt>
                     <dd>{{$post->slug}}</dd>
