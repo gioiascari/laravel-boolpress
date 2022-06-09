@@ -10,16 +10,18 @@ require("./bootstrap");
 //Chiamata axios
 window.axios = require("axios");
 
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+
 //Chiamata Vue
 window.Vue = require("vue");
-window.axios
-    .get("/api/posts")
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((e) => {
-        console.log(e);
-    });
+// window.axios
+//     .get("/api/posts")
+//     .then((res) => {
+//         console.log(res);
+//     })
+//     .catch((e) => {
+//         console.log(e);
+//     });
 
 import AppComponent from "./app/AppComponent";
 

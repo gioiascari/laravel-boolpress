@@ -9,6 +9,16 @@
 <script>
 export default {
     name: "BlogComponent",
+    mounted() {
+        window.axios
+            .get("/api/posts")
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    },
 };
 </script>
 

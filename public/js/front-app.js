@@ -2017,7 +2017,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "BlogComponent"
+  name: "BlogComponent",
+  mounted: function mounted() {
+    window.axios.get("/api/posts").then(function (res) {
+      console.log(res);
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }
 });
 
 /***/ }),
@@ -53503,14 +53510,18 @@ console.log("Ok Js:)"); //Chiamata Bootstrap
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //Chiamata axios
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); //Chiamata Vue
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"; //Chiamata Vue
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-window.axios.get("/api/posts").then(function (res) {
-  console.log(res);
-})["catch"](function (e) {
-  console.log(e);
-});
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // window.axios
+//     .get("/api/posts")
+//     .then((res) => {
+//         console.log(res);
+//     })
+//     .catch((e) => {
+//         console.log(e);
+//     });
+
 
 
 var app = new Vue({
