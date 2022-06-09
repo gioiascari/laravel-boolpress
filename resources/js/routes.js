@@ -8,6 +8,8 @@ import HomeComponent from "./pages/HomeComponent";
 
 import ContactsComponent from "./pages/ContactsComponent";
 
+import BlogComponent from "./pages/BlogComponent";
+
 import AboutUsComponent from "./pages/AboutUsComponent";
 
 import NotFoundComponent from "./pages/NotFoundComponent";
@@ -20,6 +22,11 @@ const router = new VueRouter({
             path: "/",
             name: "home",
             component: HomeComponent,
+        },
+        {
+            path: "/blog",
+            name: "blog",
+            component: BlogComponent,
         },
         {
             path: "/contacts",
