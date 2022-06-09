@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">Home</div>
+            <div class="col-12 text-center">Contacts</div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "HomeComponent",
+    name: "ContactsComponent",
 };
 </script>
 
