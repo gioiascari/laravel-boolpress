@@ -37593,7 +37593,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php\laravel-api\resources\js\front-app.js */"./resources/js/front-app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php\laravel-boolpress\resources\js\front-app.js */"./resources/js/front-app.js");
 
 
 /***/ })
