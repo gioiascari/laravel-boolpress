@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 
 import HomeComponent from "./pages/HomeComponent";
 
+//Qua si definiscono le rotte
 const router = new VueRouter({
     mode: "history",
     routes: [
