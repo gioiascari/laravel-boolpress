@@ -4,9 +4,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 console.log("Ok Js:)");
+//Chiamata Bootstrap
 require("./bootstrap");
 
+//Chiamata axios
 window.axios = require("axios");
+
+//Chiamata Vue
 window.Vue = require("vue");
 window.axios
     .get("/api/posts")
@@ -16,6 +20,12 @@ window.axios
     .catch((e) => {
         console.log(e);
     });
+
+import AppComponent from "./app/AppComponent";
+const app = new Vue({
+    el: "#app",
+    render: (h) => h(AppComponent),
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -38,8 +48,3 @@ window.axios
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import AppComponent from "./app/AppComponent";
-const app = new Vue({
-    el: "#app",
-    render: (h) => h(AppComponent),
-});
