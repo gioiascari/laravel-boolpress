@@ -2016,6 +2016,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BlogComponent",
   data: function data() {
@@ -2026,12 +2029,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    console.log("mounted");
     window.axios.get("/api/posts").then(function (res) {
       if (res.status === 200 && res.data.success) {
-        _this.posts = res.data.res;
+        _this.posts = res.data.results;
       }
-
-      console.log(res);
     })["catch"](function (e) {
       console.log(e);
     });
@@ -37812,20 +37814,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-12 text-center" }, [_vm._v("Blog")]),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 text-center" }, [
+        _vm.posts.length > 0
+          ? _c("div", [_vm._v("Ciao")])
+          : _c("div", [_vm._v("Caricamento")]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
