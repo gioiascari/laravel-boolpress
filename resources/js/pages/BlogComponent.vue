@@ -2,16 +2,23 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <div v-if="posts.length > 0">Ciao</div>
-                <div v-else>prova</div>
+                <div v-if="posts.length > 0">
+                    <PostListComponent :posts="posts" />
+                </div>
+                <div v-else>Loading</div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import PostListComponent from "../components/PostListComponent.vue";
+
 export default {
     name: "BlogComponent",
+    components: {
+        PostListComponent,
+    },
     data() {
         return {
             posts: [],
