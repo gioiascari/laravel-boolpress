@@ -1,15 +1,17 @@
 <template>
     <header>
-        <nav
-            class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0"
-        >
-            <ul class="navbar-nav px-3 ml-auto">
-                <li v-for="(navItem, i) in menu" :key="i" class="nav-item">
-                    <router-link :to="{ name: navItem.linkName }">{{
-                        navItem.label
-                    }}</router-link>
-                </li>
-            </ul>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <ul class="navbar-nav ml-auto">
+                    <li v-for="(navItem, i) in menu" :key="i" class="nav-item">
+                        <router-link
+                            :to="{ name: navItem.linkName }"
+                            class="nav-link"
+                            >{{ navItem.label }}</router-link
+                        >
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 </template>

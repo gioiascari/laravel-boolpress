@@ -1908,6 +1908,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_HeaderComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/HeaderComponent.vue */ "./resources/js/components/HeaderComponent.vue");
 //
 //
 //
@@ -1915,8 +1916,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AppComponent"
+  name: "AppComponent",
+  components: {
+    HeaderComponent: _components_HeaderComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -1930,6 +1935,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2047,7 +2054,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_HeaderComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/HeaderComponent.vue */ "./resources/js/components/HeaderComponent.vue");
 //
 //
 //
@@ -2056,13 +2062,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HomeComponent",
-  components: {
-    HeaderComponent: _components_HeaderComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  name: "HomeComponent"
 });
 
 /***/ }),
@@ -37677,7 +37678,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    prova\n    "), _c("router-view")], 1)
+  return _c("div", [_c("HeaderComponent"), _vm._v(" "), _c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37705,29 +37706,33 @@ var render = function () {
     _c(
       "nav",
       {
-        staticClass:
-          "navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0",
+        staticClass: "navbar navbar-expand-md navbar-light bg-white shadow-sm",
       },
       [
-        _c(
-          "ul",
-          { staticClass: "navbar-nav px-3 ml-auto" },
-          _vm._l(_vm.menu, function (navItem, i) {
-            return _c(
-              "li",
-              { key: i, staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: navItem.linkName } } },
-                  [_vm._v(_vm._s(navItem.label))]
-                ),
-              ],
-              1
-            )
-          }),
-          0
-        ),
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "ul",
+            { staticClass: "navbar-nav ml-auto" },
+            _vm._l(_vm.menu, function (navItem, i) {
+              return _c(
+                "li",
+                { key: i, staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: navItem.linkName } },
+                    },
+                    [_vm._v(_vm._s(navItem.label))]
+                  ),
+                ],
+                1
+              )
+            }),
+            0
+          ),
+        ]),
       ]
     ),
   ])
@@ -37859,20 +37864,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [_c("HeaderComponent"), _vm._v(" "), _vm._m(0)],
-    1
-  )
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 text-center" }, [_vm._v("Home")]),
+    return _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12 text-center" }, [_vm._v("Home")]),
+      ]),
     ])
   },
 ]
