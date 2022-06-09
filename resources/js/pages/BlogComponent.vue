@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div v-if="posts.length > 0">Ciao</div>
-                <div v-else>Caricamento</div>
+                <div v-else>prova</div>
             </div>
         </div>
     </div>

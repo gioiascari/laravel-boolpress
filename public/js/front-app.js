@@ -37819,7 +37819,7 @@ var render = function () {
       _c("div", { staticClass: "col-12 text-center" }, [
         _vm.posts.length > 0
           ? _c("div", [_vm._v("Ciao")])
-          : _c("div", [_vm._v("Caricamento")]),
+          : _c("div", [_vm._v("prova")]),
       ]),
     ]),
   ])
