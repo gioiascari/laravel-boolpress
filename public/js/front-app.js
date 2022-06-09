@@ -2018,8 +2018,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BlogComponent",
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
   mounted: function mounted() {
+    var _this = this;
+
     window.axios.get("/api/posts").then(function (res) {
+      if (res.status === 200 && res.data.success) {
+        _this.posts = res.data.res;
+      }
+
       console.log(res);
     })["catch"](function (e) {
       console.log(e);
