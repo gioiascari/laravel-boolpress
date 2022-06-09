@@ -1934,8 +1934,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "HeaderComponent"
+  name: "HeaderComponent",
+  data: function data() {
+    return {
+      menu: [{
+        linkName: "home",
+        label: "Home"
+      }, {
+        linkName: "blog",
+        label: "Blog"
+      }, {
+        linkName: "contacts",
+        label: "Contacts"
+      }, {
+        linkName: "aboutus",
+        label: "About Us"
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -37672,7 +37701,36 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("header", [_vm._v("Header")])
+  return _c("header", [
+    _c(
+      "nav",
+      {
+        staticClass:
+          "navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0",
+      },
+      [
+        _c(
+          "ul",
+          { staticClass: "navbar-nav px-3 ml-auto" },
+          _vm._l(_vm.menu, function (navItem, i) {
+            return _c(
+              "li",
+              { key: i, staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { attrs: { to: { name: navItem.linkName } } },
+                  [_vm._v(_vm._s(navItem.label))]
+                ),
+              ],
+              1
+            )
+          }),
+          0
+        ),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
