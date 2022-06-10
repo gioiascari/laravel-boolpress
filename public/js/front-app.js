@@ -2099,6 +2099,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BlogComponent",
@@ -2133,6 +2135,12 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.log(e);
       });
+    },
+    goPrevPage: function goPrevPage() {
+      this.loadPage(this.previousPage);
+    },
+    goNextPage: function goNextPage() {
+      this.loadPage(this.nextPage);
     }
   }
 });
@@ -38738,7 +38746,33 @@ var render = function () {
         _vm.posts.length > 0
           ? _c(
               "div",
-              [_c("PostListComponent", { attrs: { posts: _vm.posts } })],
+              [
+                _c("PostListComponent", { attrs: { posts: _vm.posts } }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.goPrevPage()
+                      },
+                    },
+                  },
+                  [_vm._v("Prev")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function ($event) {
+                        return _vm.goNextPage()
+                      },
+                    },
+                  },
+                  [_vm._v("Next")]
+                ),
+              ],
               1
             )
           : _c("div", [_vm._v("Loading")]),

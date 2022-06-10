@@ -4,6 +4,8 @@
             <div class="col-12 text-center">
                 <div v-if="posts.length > 0">
                     <PostListComponent :posts="posts" />
+                    <button @click="goPrevPage()">Prev</button>
+                    <button @click="goNextPage()">Next</button>
                 </div>
                 <div v-else>Loading</div>
             </div>
@@ -47,6 +49,13 @@ export default {
                 .catch((e) => {
                     console.log(e);
                 });
+        },
+
+        goPrevPage() {
+            this.loadPage(this.previousPage);
+        },
+        goNextPage() {
+            this.loadPage(this.nextPage);
         },
     },
 };
