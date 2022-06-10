@@ -2107,20 +2107,33 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      currentPage: 1,
+      previousPage: "",
+      nextPage: ""
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
     console.log("mounted");
-    window.axios.get("/api/posts").then(function (res) {
-      if (res.status === 200 && res.data.success) {
-        _this.posts = res.data.results;
-      }
-    })["catch"](function (e) {
-      console.log(e);
-    });
+    this.loadPage("/api/posts");
+  },
+  methods: {
+    loadPage: function loadPage(url) {
+      var _this = this;
+
+      window.axios.get(url).then(function (res) {
+        console.log(res);
+
+        if (res.status === 200 && res.data.success) {
+          _this.posts = res.data.results.data;
+          _this.currentPage = res.data.results.current_page;
+          _this.previousPage = res.data.results.prev_page_url;
+          _this.nextPage = res.data.results.next_page_url;
+        }
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    }
   }
 });
 
@@ -2260,7 +2273,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(res);
 
       if (res.status === 200 && res.data.success) {
-        _this.post = res.data.results;
+        _this.post = res.data.results.data;
       }
     })["catch"](function (e) {
       console.log(e);

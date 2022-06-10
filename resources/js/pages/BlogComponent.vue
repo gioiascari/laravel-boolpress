@@ -22,20 +22,32 @@ export default {
     data() {
         return {
             posts: [],
+            currentPage: 1,
+            previousPage: "",
+            nextPage: "",
         };
     },
     mounted() {
         console.log("mounted");
-        window.axios
-            .get("/api/posts")
-            .then((res) => {
-                if (res.status === 200 && res.data.success) {
-                    this.posts = res.data.results;
-                }
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        this.loadPage("/api/posts");
+    },
+    methods: {
+        loadPage(url) {
+            window.axios
+                .get(url)
+                .then((res) => {
+                    console.log(res);
+                    if (res.status === 200 && res.data.success) {
+                        this.posts = res.data.results.data;
+                        this.currentPage = res.data.results.current_page;
+                        this.previousPage = res.data.results.prev_page_url;
+                        this.nextPage = res.data.results.next_page_url;
+                    }
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
     },
 };
 </script>

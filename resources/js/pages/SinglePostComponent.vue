@@ -54,7 +54,7 @@ export default {
             .then((res) => {
                 console.log(res);
                 if (res.status === 200 && res.data.success) {
-                    this.post = res.data.results;
+                    this.post = res.data.results.data;
                 }
             })
             .catch((e) => {

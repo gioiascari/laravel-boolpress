@@ -16,8 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts= Post::paginate(1);
-        $posts = Post::all();
+        $posts= Post::paginate(3); //se attivo questo comando devo inserire nella chiamata axios dentro l'if di verifica, il data finale
+                                   //es  if (res.status === 200 && res.data.success) {this.post = res.data.results.data;} se volessi togliere il data non mi caricherebbe nulla
+        // $posts = Post::all();
         $result = ['results'=>$posts , 'success' => true];
         return response()->json($result);
 
