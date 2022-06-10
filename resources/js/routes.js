@@ -14,6 +14,8 @@ import AboutUsComponent from "./pages/AboutUsComponent";
 
 import NotFoundComponent from "./pages/NotFoundComponent";
 
+import SinglePostComponent from "./pages/SinglePostComponent";
+
 //Qua si definiscono le rotte
 const router = new VueRouter({
     mode: "history",
@@ -27,6 +29,11 @@ const router = new VueRouter({
             path: "/blog",
             name: "blog",
             component: BlogComponent,
+        },
+        {
+            path: "/blog/:id",
+            name: "singlePost",
+            component: SinglePostComponent,
         },
         {
             path: "/contacts",

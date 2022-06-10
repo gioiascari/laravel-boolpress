@@ -6,7 +6,6 @@
                     :title="post.title"
                     :cover="post.cover"
                     :content="post.content"
-                    :tag="post.tag"
                 />
             </div>
         </div>

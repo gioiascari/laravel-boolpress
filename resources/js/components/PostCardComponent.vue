@@ -17,13 +17,16 @@
                 </p>
             </div>
         </div>
+        <router-link :to="{ name: 'singlePost', params: { id } }">
+            See More</router-link
+        >
     </div>
 </template>
 
 <script>
 export default {
     name: "PostCardComponent",
-    props: ["title", "cover", "content"],
+    props: ["title", "cover", "content", "id"],
 };
 </script>
 
