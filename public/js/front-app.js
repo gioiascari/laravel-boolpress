@@ -2229,6 +2229,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePostComponent",
   data: function data() {
@@ -38855,45 +38870,55 @@ var render = function () {
       _vm._v(" "),
       _vm.post
         ? _c("div", { staticClass: "card m-2" }, [
-            _c(
-              "div",
-              { staticClass: "card-body p_0" },
-              [
-                _c("h4", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.post.title) +
-                      "\n                "
-                  ),
-                ]),
-                _vm._v(" "),
+            _c("div", { staticClass: "card-body p_0" }, [
+              _c("div", { staticClass: "wrapper_image" }, [
                 _c("img", {
                   attrs: {
                     src: "/storage/" + _vm.post.cover,
                     alt: _vm.post.title,
                   },
                 }),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.post.content) +
-                      "\n                "
-                  ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "p-2" }, [
+                _c("div", { staticClass: "card-title" }, [
+                  _c("h4", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.post.title) +
+                        "\n                        "
+                    ),
+                  ]),
                 ]),
                 _vm._v(" "),
-                _vm._l(_vm.post.tag, function (tag) {
-                  return _c("div", { key: tag.id }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(tag.name) +
-                        "\n                "
-                    ),
-                  ])
-                }),
-              ],
-              2
-            ),
+                _c(
+                  "div",
+                  { staticClass: "card-text" },
+                  [
+                    _c("p", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(_vm.post.content) +
+                          "\n                        "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Categories:")]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.post.category.name))]),
+                    _vm._v(" "),
+                    _vm._l(_vm.post.tag, function (tag) {
+                      return _c("div", { key: tag.id }, [
+                        _c("h5", [_vm._v("Tags:")]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(tag.name))]),
+                      ])
+                    }),
+                  ],
+                  2
+                ),
+              ]),
+            ]),
           ])
         : _c("div", [_vm._v("Loading")]),
     ]),

@@ -4,16 +4,31 @@
             <div class="col-12 text-center mb-2">Detail</div>
             <div v-if="post" class="card m-2">
                 <div class="card-body p_0">
-                    <h4>
-                        {{ post.title }}
-                    </h4>
-                    <img :src="'/storage/' + post.cover" :alt="post.title" />
-                    <p>
-                        {{ post.content }}
-                    </p>
+                    <div class="wrapper_image">
+                        <img
+                            :src="'/storage/' + post.cover"
+                            :alt="post.title"
+                        />
+                    </div>
+                    <div class="p-2">
+                        <div class="card-title">
+                            <h4>
+                                {{ post.title }}
+                            </h4>
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                {{ post.content }}
+                            </p>
 
-                    <div v-for="tag in post.tag" :key="tag.id">
-                        {{ tag.name }}
+                            <h5>Categories:</h5>
+                            <p>{{ post.category.name }}</p>
+
+                            <div v-for="tag in post.tag" :key="tag.id">
+                                <h5>Tags:</h5>
+                                <p>{{ tag.name }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
