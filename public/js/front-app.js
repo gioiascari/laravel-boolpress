@@ -2012,7 +2012,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCardComponent",
-  props: ["title", "cover", "content", "id"]
+  props: ["title", "cover", "content", "slug"]
 });
 
 /***/ }),
@@ -2282,13 +2282,14 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    var id = this.$route.params.id;
-    console.log("mounted id", id);
-    window.axios.get("/api/posts/" + id).then(function (res) {
+    var slug = this.$route.params.slug;
+    console.log("mounted slug", slug);
+    window.axios.get("/api/posts/" + slug).then(function (res) {
       console.log(res);
 
       if (res.status === 200 && res.data.success) {
-        _this.post = res.data.results.data;
+        _this.post = res.data.results;
+        console.log(_this.post);
       }
     })["catch"](function (e) {
       console.log(e);
@@ -38637,7 +38638,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "router-link",
-        { attrs: { to: { name: "single-post", params: { id: _vm.id } } } },
+        { attrs: { to: { name: "single-post", params: { slug: _vm.slug } } } },
         [_vm._v("\n        See More")]
       ),
     ],
@@ -38679,7 +38680,7 @@ var render = function () {
                 title: post.title,
                 cover: post.cover,
                 content: post.content,
-                id: post.id,
+                slug: post.slug,
               },
             }),
           ],
@@ -55227,7 +55228,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: "blog",
     component: _pages_BlogComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: "/blog/:id",
+    path: "/blog/:slug",
     name: "single-post",
     component: _pages_SinglePostComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {

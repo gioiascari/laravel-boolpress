@@ -17,7 +17,7 @@
                 </p>
             </div>
         </div>
-        <router-link :to="{ name: 'single-post', params: { id } }">
+        <router-link :to="{ name: 'single-post', params: { slug } }">
             See More</router-link
         >
     </div>
@@ -26,7 +26,7 @@
 <script>
 export default {
     name: "PostCardComponent",
-    props: ["title", "cover", "content", "id"],
+    props: ["title", "cover", "content", "slug"],
 };
 </script>
 

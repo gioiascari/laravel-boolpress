@@ -46,15 +46,17 @@ export default {
         };
     },
     mounted() {
-        const id = this.$route.params.id;
-        console.log("mounted id", id);
+        const slug = this.$route.params.slug;
+        console.log("mounted slug", slug);
 
         window.axios
-            .get("/api/posts/" + id)
+            .get("/api/posts/" + slug)
             .then((res) => {
                 console.log(res);
+
                 if (res.status === 200 && res.data.success) {
-                    this.post = res.data.results.data;
+                    this.post = res.data.results;
+                    console.log(this.post);
                 }
             })
             .catch((e) => {
