@@ -2101,6 +2101,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BlogComponent",
@@ -2112,7 +2115,9 @@ __webpack_require__.r(__webpack_exports__);
       posts: [],
       currentPage: 1,
       previousPage: "",
-      nextPage: ""
+      nextPage: "",
+      lastPage: "",
+      firstPage: ""
     };
   },
   mounted: function mounted() {
@@ -2131,6 +2136,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.currentPage = res.data.results.current_page;
           _this.previousPage = res.data.results.prev_page_url;
           _this.nextPage = res.data.results.next_page_url;
+          _this.lastPage = res.data.results.last_page;
+          _this.firstPage = res.data.results.first_page;
         }
       })["catch"](function (e) {
         console.log(e);
@@ -38749,29 +38756,39 @@ var render = function () {
               [
                 _c("PostListComponent", { attrs: { posts: _vm.posts } }),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function ($event) {
-                        return _vm.goPrevPage()
+                _vm.previousPage
+                  ? _c(
+                      "button",
+                      {
+                        on: {
+                          click: function ($event) {
+                            return _vm.goPrevPage()
+                          },
+                        },
                       },
-                    },
-                  },
-                  [_vm._v("Prev")]
+                      [_vm._v("\n                    Prev\n                ")]
+                    )
+                  : _vm._e(),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.currentPage) +
+                    "/" +
+                    _vm._s(_vm.lastPage) +
+                    "\n                "
                 ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function ($event) {
-                        return _vm.goNextPage()
+                _vm.nextPage
+                  ? _c(
+                      "button",
+                      {
+                        on: {
+                          click: function ($event) {
+                            return _vm.goNextPage()
+                          },
+                        },
                       },
-                    },
-                  },
-                  [_vm._v("Next")]
-                ),
+                      [_vm._v("Next")]
+                    )
+                  : _vm._e(),
               ],
               1
             )

@@ -4,8 +4,11 @@
             <div class="col-12 text-center">
                 <div v-if="posts.length > 0">
                     <PostListComponent :posts="posts" />
-                    <button @click="goPrevPage()">Prev</button>
-                    <button @click="goNextPage()">Next</button>
+                    <button v-if="previousPage" @click="goPrevPage()">
+                        Prev
+                    </button>
+                    {{ currentPage }}/{{ lastPage }}
+                    <button v-if="nextPage" @click="goNextPage()">Next</button>
                 </div>
                 <div v-else>Loading</div>
             </div>
@@ -27,6 +30,8 @@ export default {
             currentPage: 1,
             previousPage: "",
             nextPage: "",
+            lastPage: "",
+            firstPage: "",
         };
     },
     mounted() {
@@ -44,6 +49,8 @@ export default {
                         this.currentPage = res.data.results.current_page;
                         this.previousPage = res.data.results.prev_page_url;
                         this.nextPage = res.data.results.next_page_url;
+                        this.lastPage = res.data.results.last_page;
+                        this.firstPage = res.data.results.first_page;
                     }
                 })
                 .catch((e) => {
