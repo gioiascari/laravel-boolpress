@@ -32,7 +32,7 @@ const router = new VueRouter({
         },
         {
             path: "/blog/:id",
-            name: "singlePost",
+            name: "single-post",
             component: SinglePostComponent,
         },
         {

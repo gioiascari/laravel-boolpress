@@ -17,7 +17,7 @@
                 </p>
             </div>
         </div>
-        <router-link :to="{ name: 'singlePost', params: { id } }">
+        <router-link :to="{ name: 'single-post', params: { id } }">
             See More</router-link
         >
     </div>

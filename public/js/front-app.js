@@ -2041,6 +2041,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostListComponent",
@@ -2208,8 +2209,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "SinglePostComponent"
+  name: "SinglePostComponent",
+  data: function data() {
+    return {
+      post: undefined
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var id = this.$route.params.id;
+    console.log("mounted id", id);
+    window.axios.get("/api/posts/" + id).then(function (res) {
+      if (res.status === 200 && res.data.success) {
+        _this.posts = res.data.results;
+      }
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }
 });
 
 /***/ }),
@@ -38553,7 +38579,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "router-link",
-        { attrs: { to: { name: "singlePost", params: { id: _vm.id } } } },
+        { attrs: { to: { name: "single-post", params: { id: _vm.id } } } },
         [_vm._v("\n        See More")]
       ),
     ],
@@ -38595,6 +38621,7 @@ var render = function () {
                 title: post.title,
                 cover: post.cover,
                 content: post.content,
+                id: post.id,
               },
             }),
           ],
@@ -38807,7 +38834,17 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("ciao sono il dett")])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 text-center mb-2" }, [_vm._v("Detail")]),
+      _vm._v(" "),
+      _vm.post
+        ? _c("div", [
+            _vm._v("\n            " + _vm._s(_vm.post.title) + "\n        "),
+          ])
+        : _vm._e(),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55049,7 +55086,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _pages_BlogComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: "/blog/:id",
-    name: "singlePost",
+    name: "single-post",
     component: _pages_SinglePostComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: "/contacts",
