@@ -2216,6 +2216,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePostComponent",
   data: function data() {
@@ -2229,8 +2230,10 @@ __webpack_require__.r(__webpack_exports__);
     var id = this.$route.params.id;
     console.log("mounted id", id);
     window.axios.get("/api/posts/" + id).then(function (res) {
+      console.log(res);
+
       if (res.status === 200 && res.data.success) {
-        _this.posts = res.data.results;
+        _this.post = res.data.results;
       }
     })["catch"](function (e) {
       console.log(e);
@@ -38842,7 +38845,7 @@ var render = function () {
         ? _c("div", [
             _vm._v("\n            " + _vm._s(_vm.post.title) + "\n        "),
           ])
-        : _vm._e(),
+        : _c("div", [_vm._v("Loading")]),
     ]),
   ])
 }

@@ -5,6 +5,7 @@
             <div v-if="post">
                 {{ post.title }}
             </div>
+            <div v-else>Loading</div>
         </div>
     </div>
 </template>
@@ -24,8 +25,9 @@ export default {
         window.axios
             .get("/api/posts/" + id)
             .then((res) => {
+                console.log(res);
                 if (res.status === 200 && res.data.success) {
-                    this.posts = res.data.results;
+                    this.post = res.data.results;
                 }
             })
             .catch((e) => {
