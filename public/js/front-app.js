@@ -38742,7 +38742,7 @@ var render = function () {
         _c("div", { staticClass: "wrapper_image" }, [
           _c("img", {
             staticClass: "card-img-top h-100",
-            attrs: { src: "storage/" + _vm.cover, alt: _vm.title },
+            attrs: { src: "/storage/" + _vm.cover, alt: _vm.title },
           }),
         ]),
         _vm._v(" "),

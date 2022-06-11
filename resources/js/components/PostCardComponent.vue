@@ -3,7 +3,7 @@
         <div class="card-body p_0">
             <div class="wrapper_image">
                 <img
-                    :src="'storage/' + cover"
+                    :src="'/storage/' + cover"
                     :alt="title"
                     class="card-img-top h-100"
                 />
