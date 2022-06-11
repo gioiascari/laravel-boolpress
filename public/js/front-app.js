@@ -2189,8 +2189,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoriesComponent",
   data: function data() {
@@ -2211,6 +2209,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (res.status === 200 && res.data.success) {
           _this.categories = res.data.results;
+          console.log(_this.categories);
         }
       })["catch"](function (e) {
         console.log(e);
@@ -2300,12 +2299,50 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PostListComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PostListComponent */ "./resources/js/components/PostListComponent.vue");
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PostCategoriesComponent"
+  name: "PostCategoriesComponent",
+  components: {
+    PostListComponent: _components_PostListComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      category: undefined
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var id = this.$route.params.id; // console.log("mounted id", id);
+
+    window.axios.get("/api/categories/" + id).then(function (res) {
+      // console.log(res);
+      if (res.status === 200 && res.data.success) {
+        _this.category = res.data.result;
+        console.log(_this.category, "ciao");
+      }
+    })["catch"](function (e) {
+      console.log(e);
+    });
+  }
 });
 
 /***/ }),
@@ -38919,22 +38956,18 @@ var render = function () {
                   "div",
                   { key: category.id },
                   [
-                    _c("router-link", {
-                      attrs: {
-                        to: {
-                          name: "post-per-categories",
-                          params: { id: category.id },
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "post-per-categories",
+                            params: { id: category.id },
+                          },
                         },
                       },
-                    }),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(category.name) +
-                          "\n                    "
-                      ),
-                    ]),
+                      [_vm._v(_vm._s(category.name))]
+                    ),
                   ],
                   1
                 )
@@ -39077,7 +39110,27 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("ciao")])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _vm.category
+          ? _c(
+              "div",
+              [
+                _c("h2", [_vm._v(_vm._s(_vm.category.name))]),
+                _vm._v(" "),
+                _c("PostListComponent", {
+                  attrs: { posts: _vm.category.posts },
+                }),
+                _vm._v(" "),
+                _c("div"),
+              ],
+              1
+            )
+          : _c("div", [_vm._v("Loading")]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

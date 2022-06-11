@@ -50,7 +50,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        // $category = Category::find($id);
+        $category = Category::where('id' , $id)->with('posts')->first();
         $result = ['result'=>$category , 'success' => true];
         return response()->json($result);
 

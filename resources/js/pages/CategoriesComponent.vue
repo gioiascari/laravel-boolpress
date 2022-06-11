@@ -10,10 +10,8 @@
                                 name: 'post-per-categories',
                                 params: { id: category.id },
                             }"
-                        ></router-link>
-                        <p>
-                            {{ category.name }}
-                        </p>
+                            >{{ category.name }}</router-link
+                        >
                     </div>
                 </div>
 
@@ -43,6 +41,7 @@ export default {
                     console.log(res);
                     if (res.status === 200 && res.data.success) {
                         this.categories = res.data.results;
+                        console.log(this.categories);
                     }
                 })
                 .catch((e) => {
