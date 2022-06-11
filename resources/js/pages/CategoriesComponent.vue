@@ -5,6 +5,12 @@
                 <h2>Categories:</h2>
                 <div v-if="categories.length > 0">
                     <div v-for="category in categories" :key="category.id">
+                        <router-link
+                            :to="{
+                                name: 'post-per-categories',
+                                params: { id: category.id },
+                            }"
+                        ></router-link>
                         <p>
                             {{ category.name }}
                         </p>
